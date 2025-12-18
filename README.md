@@ -1,99 +1,144 @@
-# 📈 Sales Forecasting Using XGBoost
+# 📊 Store Sales Forecasting & Business Performance Analysis
 
 ## 📌 Project Overview
 
-This project focuses on forecasting retail store sales using historical transaction data and machine learning techniques. Leveraging **XGBoost**, a powerful gradient boosting algorithm, the goal is to accurately predict future sales by capturing seasonal trends, temporal dependencies, and store-level patterns.
+This project analyzes historical retail sales and profitability data to uncover trends, regional disparities, and product-level performance drivers. Using **interactive Tableau dashboards** and an **XGBoost-based forecasting model**, the analysis enables stakeholders to assess past performance, diagnose profitability risks, and anticipate future demand.
 
-In addition to predictive modeling, **interactive Tableau dashboards** were built to visualize sales trends, forecast results, and store-level performance, enabling stakeholders to explore insights intuitively and support data-driven planning.
+Three integrated dashboards were developed:
 
----
+1. **Business Performance Overview**
+2. **Product & Profitability Analysis**
+3. **Sales Forecasting & Future Demand Outlook**
 
-## 🧠 Methodology
-
-### 1️⃣ Data Preparation & Exploratory Data Analysis (EDA)
-
-- Parsed and validated date fields  
-- Checked for missing values, outliers, and inconsistencies  
-- Analyzed:
-  - Sales trends over time  
-  - Store-level sales distributions  
-  - Seasonality and demand fluctuations  
-- Visualized daily, weekly, and monthly sales patterns  
+Together, these dashboards form a cohesive **decision-support system** that transforms transactional data into actionable business insights.
 
 ---
 
-### 2️⃣ Feature Engineering
+## 🎯 Problem Statement
 
-- Extracted time-based features:
-  - Year, month, week, day of week  
-  - Is_weekend / is_holiday indicators (if applicable)  
-- Created lag features:
-  - Previous day, week, and rolling-window sales  
-- Generated rolling statistics:
-  - Moving averages  
-  - Rolling standard deviation  
-- Encoded categorical variables (e.g., store ID)  
+Organizations often track sales performance without fully understanding the interaction between profitability, growth trends, and regional or product-level variations. High revenue does not necessarily imply high profit, and underperforming regions or product categories may remain unnoticed until their financial impact becomes significant.
+
+This project addresses the challenge of **analyzing sales, profit, and growth simultaneously** to identify strengths, risks, and opportunities across time, geography, and product categories.
 
 ---
 
-### 3️⃣ Modeling & Forecasting
+## 🎯 Project Objectives
 
-- Implemented **XGBoost Regressor** for sales prediction  
-- Used time-aware train–test splits to prevent data leakage  
-- Tuned hyperparameters:
-  - Learning rate  
-  - Max depth  
-  - Number of estimators  
-- Generated short-term sales forecasts at the store level  
+- Analyze historical sales and profit trends  
+- Compare revenue growth with profitability behavior  
+- Identify high- and low-performing regions and product sub-categories  
+- Deliver insights through intuitive, interactive Tableau dashboards  
+- Extend descriptive insights into the future using machine learning–based forecasting  
 
 ---
 
-### 4️⃣ Model Evaluation
-
-- Evaluated model performance using:
-  - RMSE (Root Mean Squared Error)  
-  - MAE (Mean Absolute Error)  
-- Compared actual vs predicted sales  
-- Analyzed residual patterns across time and stores  
-
----
-
-### 5️⃣ Visualization & Interpretation
-
-- Time series plots of actual vs predicted sales  
-- XGBoost feature importance analysis  
-- Error trends and forecast stability assessment  
-- Focused on interpretability and business relevance  
-
----
-
-## 📊 Tableau Dashboards
-
-Developed **interactive Tableau dashboards** to complement the forecasting model and communicate insights effectively:
-
-- 📈 **Sales Trends Dashboard**  
-  Visualizes historical sales patterns, seasonality, and growth trends across stores and time.
-
-- 🔮 **Forecast vs Actual Dashboard**  
-  Compares predicted sales against actual values, highlighting forecast accuracy and deviations.
-
-- 🏬 **Store Performance Dashboard**  
-  Enables store-level analysis with filters for date ranges and sales metrics to identify high- and low-performing locations.
-
-These dashboards allow non-technical stakeholders to explore forecasts, monitor performance, and support planning decisions.
-
----
-
-## 🔍 Key Insights
-
-- XGBoost successfully captured **seasonal patterns and short-term sales dependencies**  
-- Lag and rolling-window features were among the strongest predictors  
-- Store-level sales behavior varied significantly, reinforcing the need for granular forecasting  
-- Tableau dashboards enhanced interpretability and accessibility of model outputs  
-
----
-
-## 📎 Dataset Source
+## 📎 Data Source
 
 **Kaggle – Store Sales Forecasting Dataset**  
 https://www.kaggle.com/datasets/tanayatipre/store-sales-forecasting-dataset/data
+
+**Key Fields:**
+- Order date  
+- Sales revenue  
+- Profit  
+- Product sub-category  
+- Region and state  
+
+---
+
+## 🧹 Data Preparation & Feature Engineering
+
+The dataset was prepared to ensure analytical accuracy and suitability for both descriptive and predictive modeling:
+
+- Standardized date fields for weekly, monthly, and yearly analysis  
+- Validated sales and profit records and handled missing values  
+- Aggregated data across region, product, and time dimensions  
+
+**Derived Metrics:**
+- Profit margin (Profit / Sales)  
+- Year-over-Year (YoY) sales growth  
+- Sales and profit moving averages  
+
+**Forecasting Preparation:**
+- Weekly aggregation of historical sales  
+- Time-based feature engineering to capture trend and seasonality  
+- Temporal train–validation split to prevent data leakage  
+
+An **XGBoost regression model** was used to forecast weekly sales for the next ten weeks, leveraging its ability to model non-linear patterns and complex interactions.
+
+---
+
+## 📊 Dashboard 1: Business Performance Overview
+
+### Objective
+Provide a high-level view of business performance by combining **sales growth, profitability trends, and regional analysis**.
+
+### Key Insights
+- Sales exhibit strong seasonality, while profit remains volatile  
+- Revenue growth moderated after an initial peak  
+- Performance varies significantly by region  
+- Certain regions generate revenue at the expense of profitability  
+
+This dashboard supports executive-level assessment of growth sustainability and regional risk.
+
+---
+
+## 📦 Dashboard 2: Product & Profitability Analysis
+
+### Objective
+Explain **what drives profitability and loss at the product sub-category level**.
+
+### Key Insights
+- Sales are concentrated within a small set of sub-categories  
+- High sales do not always correspond to high profit  
+- Some sub-categories are structurally margin-negative  
+- Profit stability varies widely across products  
+
+This dashboard informs pricing strategy, promotion decisions, and product portfolio optimization.
+
+---
+
+## 🔮 Dashboard 3: Sales Forecasting & Future Demand Outlook (XGBoost)
+
+### Objective
+Provide a forward-looking view of demand by forecasting **weekly sales for the next ten weeks**.
+
+### Methodology
+- Trained an XGBoost model on historical weekly sales  
+- Captured seasonality and short-term demand patterns  
+- Validated forecasts against historical data  
+
+### Key Insights
+- XGBoost effectively models short-term sales trends  
+- Future demand remains concentrated in key sub-categories  
+- Regional demand projections enable proactive planning  
+- Forecast uncertainty varies across product categories  
+
+This dashboard enables **data-driven demand planning and risk-aware decision-making**.
+
+---
+
+## 🧠 End-to-End Analytical Storyline
+
+- **Descriptive:** How has the business performed historically?  
+- **Diagnostic:** Where are profits created or lost today?  
+- **Predictive:** What is likely to happen next, and how should the business prepare?  
+
+This progression aligns with modern **business intelligence and analytics best practices**.
+
+---
+
+## 🛠 Tools & Technologies
+
+- **Tableau:** Interactive dashboards and visual analytics  
+- **XGBoost:** Machine learning–based sales forecasting  
+- **Python:** Data preparation and feature engineering  
+
+---
+
+## ✅ Key Takeaways
+
+- Revenue growth must be evaluated alongside profitability  
+- Regional and product-level heterogeneity strongly impact performance  
+- Machine learning enhances short-term demand forecasting  
+- Tableau dashboards translate analytics into actionable insights  
